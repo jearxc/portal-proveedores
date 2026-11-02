@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 
     <title>Iniciar Sesión</title>
@@ -33,6 +34,26 @@
                     <h5 class="text-center mb-4">
                         Iniciar Sesión
                     </h5>
+
+
+
+                    <div
+                            th:if="${param.error}"
+                            class="alert alert-danger">
+
+                        Usuario o contraseña incorrectos.
+
+                    </div>
+
+
+
+                    <div
+                            th:if="${param.logout}"
+                            class="alert alert-success">
+
+                        Sesión cerrada correctamente.
+
+                    </div>
 
                     <form
                             th:action="@{/login}"
@@ -104,5 +125,32 @@
 
 </div>
 
+<script>
+
+    setTimeout(() => {
+
+        const alerts =
+            document.querySelectorAll('.alert');
+
+        alerts.forEach(alert => {
+
+            alert.style.transition =
+                'opacity 0.5s';
+
+            alert.style.opacity = '0';
+
+            setTimeout(() => {
+
+                alert.remove();
+
+            }, 500);
+
+        });
+
+    }, 3000);
+
+</script>
+
 </body>
+
 </html>
