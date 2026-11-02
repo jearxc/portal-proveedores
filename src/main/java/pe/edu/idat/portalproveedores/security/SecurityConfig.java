@@ -36,6 +36,7 @@ public class SecurityConfig {
                         .requestMatchers(
 
                                 "/",
+                                "/login",
                                 "/registro",
                                 "/css/**",
                                 "/js/**",
@@ -53,7 +54,9 @@ public class SecurityConfig {
                         .authenticated()
                 )
                 .formLogin(login -> login
+                        .loginPage("/login")
                         .defaultSuccessUrl("/home", true)
+                        .permitAll()
                 )
                 .exceptionHandling(exception -> exception
                         .accessDeniedPage("/error-403")
